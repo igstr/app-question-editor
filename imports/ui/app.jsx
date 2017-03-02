@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import QuestionsTable from './questions-table.jsx';
+import QuestionSummary from './question-summary.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -146,8 +147,14 @@ export default class App extends Component {
               onInsertCol={ this.onInsertCol }
               onRemoveClick={ this.onRemoveClick } />
           </div>
-          <div className="col-sm-6 text-center">
-            <h2>Question Summary View</h2>
+          <div className="col-sm-6">
+            <div className="text-center">
+              <h2>Question Summary View</h2>
+            </div>
+            <QuestionSummary
+              rows={ this.state.rows }
+              cols={ this.state.cols } />
+            <div className="col-split"></div>
           </div>
         </div>
       </div>
