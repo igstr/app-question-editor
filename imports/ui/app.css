@@ -1,0 +1,62 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+h1 {
+  font-size: 28px;
+}
+h2 {
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.questions-table {
+  margin: 20px auto 0;
+}
+.questions-table td,
+.questions-table td.cell-label input {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 44px;
+  height: 44px;
+  line-height: 40px;
+}
+.questions-table tbody td.cell-radio {
+  position: relative;
+}
+.questions-table td.cell-radio input:hover,
+.questions-table td.cell-radio label:hover {
+  cursor:pointer;
+}
+.questions-table td.cell-label input,
+.questions-table td.cell-label input {
+  border: 0;
+}
+.questions-table td.cell-image button,
+.questions-table td.cell-insert-btn button,
+.questions-table td.cell-remove-btn button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 0;
+}
+.questions-table td.cell-image button {
+  color: #909090;
+}
+.questions-table td.cell-insert-btn button {
+  color: #FF0000;
+}
+.questions-table td.cell-radio label {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.questions-table td.cell-label input:focus,
+.questions-table td.cell-label input:focus {
+  outline: none;
+}
