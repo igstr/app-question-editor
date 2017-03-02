@@ -162,12 +162,10 @@ export default class QuestionsTable extends Component {
 
   render() {
     return (
-      <div>
-        <table className="questions-table">
-          { this.renderHead() }
-          { this.renderBody() }
-        </table>
-      </div>
+      <table className="questions-table">
+        { this.renderHead() }
+        { this.renderBody() }
+      </table>
     );
   }
 }
