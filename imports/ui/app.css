@@ -9,11 +9,12 @@ h1 {
 }
 h2 {
   margin-top: 5px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 }
-.questions-table {
-  margin: 20px auto 0;
+h3,
+.question-title {
+  font-size: 18px;
 }
 .questions-table td,
 .questions-table td.cell-label input {
@@ -34,6 +35,10 @@ h2 {
 .questions-table td.cell-label input,
 .questions-table td.cell-label input {
   border: 0;
+}
+.questions-table td.cell-label input:focus,
+.questions-table td.cell-label input:focus {
+  outline: none;
 }
 .questions-table td.cell-image button,
 .questions-table td.cell-insert-btn button,
@@ -56,7 +61,14 @@ h2 {
   left: 0;
   top: 0;
 }
-.questions-table td.cell-label input:focus,
-.questions-table td.cell-label input:focus {
+.question-title {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-style: italic;
+  width: 100%;
+  border: 0;
+}
+.question-title:focus {
   outline: none;
 }

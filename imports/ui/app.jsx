@@ -10,6 +10,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
+      questionTitle: "Question title",
       rows: [
         {
           label: "row1",
@@ -116,14 +117,25 @@ export default class App extends Component {
     this.setState(state);
   }
 
+  onQuestionTitleChange(event) {
+    this.setState({ questionTitle: event.target.value });
+  }
+
   render() {
     return (
       <div className="container">
         <div className="row">
           <h1>Question editor</h1>
           <hr />
-          <div className="col-sm-6 text-center">
-            <h2>Question Edition View</h2>
+          <div className="col-sm-6">
+            <div className="text-center">
+              <h2>Question Edition View</h2>
+            </div>
+            <input
+              type="text"
+              className="question-title"
+              onChange={ this.onQuestionTitleChange }
+              value={ this.state.questionTitle} />
             <QuestionsTable
               rows={ this.state.rows }
               cols={ this.state.cols }
