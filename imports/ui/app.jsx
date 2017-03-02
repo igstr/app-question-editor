@@ -154,7 +154,7 @@ export default class App extends Component {
             <QuestionSummary
               rows={ this.state.rows }
               cols={ this.state.cols } />
-            <div className="col-split"></div>
+            <div className="col-split hidden-xs"></div>
           </div>
         </div>
       </div>
