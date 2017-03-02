@@ -4,9 +4,7 @@ export default class QuestionsTable extends Component {
   constructor(props) {
     super(props);
 
-    this.onCellChange = this.onCellChange.bind(this);
     this.onLabelChange = this.onLabelChange.bind(this);
-    this.onImageClick = this.onImageClick.bind(this);
   }
 
   onCellChange(row, col) {
@@ -17,7 +15,7 @@ export default class QuestionsTable extends Component {
     const target = event.target;
     const row = parseInt(target.getAttribute("data-row-index"));
     const col = parseInt(target.getAttribute("data-col-index"));
-    this.props.onLabelChange(attr.row, attr.col, target.value);
+    this.props.onLabelChange(row, col, target.value);
   }
 
   onImageClick(row, col) {
