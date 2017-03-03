@@ -1,70 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import CellNewBtn from './cell-new-btn.jsx';
+import CellRemoveBtn from './cell-remove-btn.jsx';
 import CellImage from './cell-image.jsx';
+import CellLabel from './cell-label.jsx';
+import CellRadio from './cell-radio.jsx';
 
 export default class QuestionsTable extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onLabelChange = this.onLabelChange.bind(this);
-  }
-
-  onCellChange(row, col) {
-    this.props.onCellChange(row, col);
-  }
-
-  onLabelChange(event) {
-    const target = event.target;
-    const row = parseInt(target.getAttribute("data-row-index"));
-    const col = parseInt(target.getAttribute("data-col-index"));
-    this.props.onLabelChange(row, col, target.value);
-  }
-
-  onImageClick(row, col) {
-    this.props.onImageClick(row, col);
-  }
-
-  onRemoveClick(row, col) {
-    this.props.onRemoveClick(row, col);
-  }
-
-  renderLabelCell(row, col, label) {
-    return (
-      <td className="cell-label">
-        <input
-          type="text"
-          data-row-index={ row }
-          data-col-index={ col }
-          onChange={ this.onLabelChange }
-          value={label} />
-      </td>
-    );
-  }
-
-  renderInsertBtnCell(onClick) {
-    return (
-      <td className="cell-insert-btn">
-        <button
-          type="button"
-          onClick={ onClick }
-          className="btn btn-default">
-          <i className="fa fa-plus" aria-hidden="true"></i>
-        </button>
-      </td>
-    );
-  }
-
-  renderRemoveBtnCell(row, col) {
-    return (
-      <td className="cell-remove-btn">
-        <button
-          type="button"
-          onClick={this.onRemoveClick.bind(this, row, col)}
-          className="btn btn-default">
-          <i className="fa fa-times" aria-hidden="true"></i>
-        </button>
-      </td>
-    );
-  }
 
   renderHead() {
     const imgCells = [];
@@ -77,7 +18,12 @@ export default class QuestionsTable extends Component {
           image={this.props.cols[i].image}
           onChange={this.props.onImageChange} />
       );
-      labelCells.push(this.renderLabelCell(null, i, this.props.cols[i].label));
+      labelCells.push(
+        <CellLabel
+          col={i}
+          value={this.props.cols[i].label}
+          onChange={this.props.onLabelChange} />
+      );
     }
 
     return (
@@ -87,7 +33,7 @@ export default class QuestionsTable extends Component {
               rowSpan="2">
           </td>
           { imgCells }
-          { this.renderInsertBtnCell(this.props.onInsertCol) }
+          <CellNewBtn onClick={this.props.onInsertCol} />
         </tr>
         <tr>
           { labelCells }
@@ -96,30 +42,24 @@ export default class QuestionsTable extends Component {
     );
   }
 
-  renderRadioCell(row, col, value) {
-    const id = `cell-${row}-${col}`;
-    return (
-      <td className="cell-radio">
-        <input
-          type="radio"
-          id={id}
-          key={col}
-          onChange={this.onCellChange.bind(this, row, col)}
-          checked={value} />
-        <label htmlFor={id}>
-        </label>
-      </td>
-    );
-  }
-
   renderBody() {
     const rows = this.props.rows.map((row, index) => {
 
       const cells = row.cells.map((cell, cellIndex) => {
-        return this.renderRadioCell(index, cellIndex, cell);
+        return (
+          <CellRadio
+            row={index}
+            col={cellIndex}
+            value={cell}
+            onChange={this.props.onCellChange} />
+        );
       });
 
-      cells.push(this.renderRemoveBtnCell(index, null));
+      cells.push(
+        <CellRemoveBtn
+          row={index}
+          onClick={this.props.onRemoveClick} />
+      );
 
       return (
         <tr>
@@ -127,7 +67,10 @@ export default class QuestionsTable extends Component {
             row={index}
             image={row.image}
             onChange={this.props.onImageChange} />
-          { this.renderLabelCell(index, null, row.label) }
+          <CellLabel
+            row={index}
+            value={row.label}
+            onChange={this.props.onLabelChange} />
           { cells }
         </tr>
       );
@@ -137,15 +80,18 @@ export default class QuestionsTable extends Component {
     const removeBtnsRow = [];
     const l = this.props.rows[0].cells.length;
     for (let i = 0; i < l; i++) {
-      removeBtnsRow.push(this.renderRemoveBtnCell(null, i));
+      removeBtnsRow.push(
+        <CellRemoveBtn
+          col={i}
+          onClick={this.props.onRemoveClick} />
+      );
     }
-
 
     return (
       <tbody>
         { rows }
         <tr>
-          { this.renderInsertBtnCell(this.props.onInsertRow) }
+          <CellNewBtn onClick={this.props.onInsertRow} />
           <td></td>
           { removeBtnsRow }
         </tr>
@@ -165,7 +111,6 @@ export default class QuestionsTable extends Component {
 
 QuestionsTable.propTypes = {
   onLabelChange: PropTypes.func,
-  onImageClick: PropTypes.func,
   rows: PropTypes.arrayOf(PropTypes.object),
   cols: PropTypes.arrayOf(PropTypes.object)
 };
