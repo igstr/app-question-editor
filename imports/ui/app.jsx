@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import QuestionsTable from './questions-table.jsx';
 import QuestionSummary from './question-summary.jsx';
+import QuestionTableLegend from './question-table-legend.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -171,6 +172,16 @@ export default class App extends Component {
               rows={ this.state.rows }
               cols={ this.state.cols } />
             <div className="col-split hidden-xs"></div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-6">
+            <h3>Legend</h3>
+            <QuestionTableLegend />
+          </div>
+          <div className="col-sm-6">
+            <h3>Notes</h3>
+            <p><i>Italic</i> text is editable</p>
           </div>
         </div>
       </div>

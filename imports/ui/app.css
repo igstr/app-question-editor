@@ -16,7 +16,11 @@ h3,
 .question-title {
   font-size: 18px;
 }
-.questions-table td,
+.questions-table td.cell-label,
+.questions-table td.cell-radio,
+.questions-table td.cell-image,
+.questions-table td.cell-new-btn,
+.questions-table td.cell-remove-btn,
 .questions-table td.cell-label input {
   margin: 0;
   padding: 0;
@@ -83,13 +87,15 @@ h3,
 .question-title {
   display: block;
   margin-top: 20px;
-  margin-bottom: 10px;
   font-style: italic;
   width: 100%;
   border: 0;
 }
 .question-title:focus {
   outline: none;
+}
+.table-legend span.legend-dash {
+  margin: 0 7px 0 4px;
 }
 .col-split {
   position: absolute;

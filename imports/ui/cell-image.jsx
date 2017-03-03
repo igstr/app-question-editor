@@ -14,17 +14,20 @@ export default class CellImage extends Component {
     const props = this.props;
     const labelStyle = props.image ? { backgroundImage: "url(" + props.image + ")" } : { };
     const labelClass = props.image ? "btn image-uploaded" : "btn";
+    const input = props.onChange ?
+      <input
+        type="file"
+        accept="image/*"
+        onChange={this.onChange} />:
+      null;
 
     return (
       <td className="cell-image">
         <label
           className={labelClass}
           style={labelStyle} >
-          <input
-            type="file"
-            accept="image/*"
-            onChange={this.onChange} />
           <i className="fa fa-plus" aria-hidden="true"></i>
+          {input}
         </label>
       </td>
     );
