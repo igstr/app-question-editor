@@ -60,6 +60,7 @@ export default class App extends Component {
     this.onInsertCol = this.onInsertCol.bind(this);
     this.onRemoveClick = this.onRemoveClick.bind(this);
     this.onImageChange = this.onImageChange.bind(this);
+    this.onQuestionTitleChange = this.onQuestionTitleChange.bind(this);
   }
 
   onInsertRow() {
@@ -151,7 +152,7 @@ export default class App extends Component {
               type="text"
               className="question-title"
               onChange={ this.onQuestionTitleChange }
-              value={ this.state.questionTitle} />
+              value={ this.state.questionTitle } />
             <QuestionsTable
               rows={ this.state.rows }
               cols={ this.state.cols }
