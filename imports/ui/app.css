@@ -85,6 +85,11 @@ h3,
   left: 0;
   top: 0;
 }
+.questions-table td button:active,
+.questions-table td button:focus,
+.questions-table td button:active:focus {
+  outline: 0;
+}
 .question-title {
   display: block;
   margin-top: 20px;
