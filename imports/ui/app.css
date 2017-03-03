@@ -40,16 +40,36 @@ h3,
 .questions-table td.cell-label input:focus {
   outline: none;
 }
-.questions-table td.cell-image button,
 .questions-table td.cell-insert-btn button,
-.questions-table td.cell-remove-btn button {
+.questions-table td.cell-remove-btn button,
+.questions-table td.cell-image label {
   width: 40px;
   height: 40px;
+  padding: 6px 12px;
+  line-height: 28px;
   border: 0;
   border-radius: 0;
 }
-.questions-table td.cell-image button {
+.questions-table td.cell-image label {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #909090;
+}
+.questions-table td.cell-image label input {
+  display:none;
+}
+.questions-table td.cell-image label:not(.image-uploaded) {
+  background-color: #e6e6e6;
+}
+.questions-table td.cell-image label:not(.image-uploaded):hover {
+  background-color: #dedede;
+}
+.questions-table td.cell-image label.image-uploaded i {
+  display: none;
+}
+.questions-table td.cell-image label.image-uploaded:hover i {
+  display: initial;
 }
 .questions-table td.cell-insert-btn button {
   color: #FF0000;

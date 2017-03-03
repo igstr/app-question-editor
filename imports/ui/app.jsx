@@ -59,6 +59,7 @@ export default class App extends Component {
     this.onInsertRow = this.onInsertRow.bind(this);
     this.onInsertCol = this.onInsertCol.bind(this);
     this.onRemoveClick = this.onRemoveClick.bind(this);
+    this.onImageChange = this.onImageChange.bind(this);
   }
 
   onInsertRow() {
@@ -100,8 +101,22 @@ export default class App extends Component {
     this.setState(state);
   }
 
-  onImageClick(row, col) {
-    console.log(row, col);
+  onImageChange(event, row, col) {
+    const file = event.target.files[0];
+    if (!file || !file.type.match(/^image\/\w*/)) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const state = this.state;
+      if (row || row === 0) {
+        state.rows[row].image = reader.result;
+        this.setState(state);
+      } else if (col || col === 0) {
+        state.cols[col].image = reader.result;
+        this.setState(state);
+      }
+    }
+    reader.readAsDataURL(file);
   }
 
   onRemoveClick(row, col) {
@@ -142,7 +157,7 @@ export default class App extends Component {
               cols={ this.state.cols }
               onCellChange={ this.onCellChange }
               onLabelChange={ this.onLabelChange }
-              onImageClick={ this.onImageClick }
+              onImageChange={ this.onImageChange }
               onInsertRow={ this.onInsertRow }
               onInsertCol={ this.onInsertCol }
               onRemoveClick={ this.onRemoveClick } />

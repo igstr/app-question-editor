@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import CellImage from './cell-image.jsx';
 
 export default class QuestionsTable extends Component {
   constructor(props) {
@@ -24,20 +25,6 @@ export default class QuestionsTable extends Component {
 
   onRemoveClick(row, col) {
     this.props.onRemoveClick(row, col);
-  }
-
-  renderImageCell(row, col, image) {
-    return (
-      <td className="cell-image">
-        <button
-          type="button"
-          onClick={ this.onImageClick.bind(this, row, col) }
-          style={{ backgroundImage: image }}
-          className="btn">
-          <i className="fa fa-plus" aria-hidden="true"></i>
-        </button>
-      </td>
-    );
   }
 
   renderLabelCell(row, col, label) {
@@ -80,12 +67,17 @@ export default class QuestionsTable extends Component {
   }
 
   renderHead() {
-    const images = [];
-    const labels = [];
+    const imgCells = [];
+    const labelCells = [];
 
     for (let i = 0, l = this.props.cols.length; i < l; i++) {
-      images.push(this.renderImageCell(null, i, this.props.cols[i].image));
-      labels.push(this.renderLabelCell(null, i, this.props.cols[i].label));
+      imgCells.push(
+        <CellImage
+          col={i}
+          image={this.props.cols[i].image}
+          onChange={this.props.onImageChange} />
+      );
+      labelCells.push(this.renderLabelCell(null, i, this.props.cols[i].label));
     }
 
     return (
@@ -94,11 +86,11 @@ export default class QuestionsTable extends Component {
           <td colSpan="2"
               rowSpan="2">
           </td>
-          { images }
+          { imgCells }
           { this.renderInsertBtnCell(this.props.onInsertCol) }
         </tr>
         <tr>
-          { labels }
+          { labelCells }
         </tr>
       </thead>
     );
@@ -131,7 +123,10 @@ export default class QuestionsTable extends Component {
 
       return (
         <tr>
-          { this.renderImageCell(index, null, row.image) }
+          <CellImage
+            row={index}
+            image={row.image}
+            onChange={this.props.onImageChange} />
           { this.renderLabelCell(index, null, row.label) }
           { cells }
         </tr>
