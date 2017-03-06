@@ -69,7 +69,7 @@ export default class App extends Component {
     state.rows.push({
       label: "row" + (state.rows.length + 1),
       image: "",
-      cells: Array(state.rows[0].cells.length).fill(false)
+      cells: Array(state.cols.length).fill(false)
     });
     this.setState(state);
   }

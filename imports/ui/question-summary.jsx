@@ -22,8 +22,8 @@ export default class QuestionSummary extends Component {
     // Find longest and shortest labels
     let longestRowLabel = 0;
     let longestColLabel = 0;
-    let shortestRowLabel = rows[0].label ? rows[0].label.length : 0;
-    let shortestColLabel = cols[0].label ? cols[0].label.length : 0;
+    let shortestRowLabel = rows[0] && rows[0].label ? rows[0].label.length : 0;
+    let shortestColLabel = cols[0] && cols[0].label ? cols[0].label.length : 0;
     for (let i = 0; i < rowsLength; i++) {
       const length = rows[i].label.length;
       longestRowLabel = Math.max(length, longestRowLabel);

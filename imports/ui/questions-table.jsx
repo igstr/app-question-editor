@@ -78,7 +78,7 @@ export default class QuestionsTable extends Component {
 
     // Generate column remove buttons
     const removeBtnsRow = [];
-    const l = this.props.rows[0].cells.length;
+    const l = this.props.cols.length;
     for (let i = 0; i < l; i++) {
       removeBtnsRow.push(
         <CellRemoveBtn
