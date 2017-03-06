@@ -7,6 +7,9 @@ import CellRadio from './cell-radio.jsx';
 
 export default class QuestionsTable extends Component {
 
+  /**
+   * Render table thead element
+   */
   renderHead() {
     const imgCells = [];
     const labelCells = [];
@@ -42,6 +45,9 @@ export default class QuestionsTable extends Component {
     );
   }
 
+  /**
+   * Render table tbody element
+   */
   renderBody() {
     const rows = this.props.rows.map((row, index) => {
 
@@ -110,9 +116,14 @@ export default class QuestionsTable extends Component {
 }
 
 QuestionsTable.propTypes = {
-  onLabelChange: PropTypes.func,
   rows: PropTypes.arrayOf(PropTypes.object),
-  cols: PropTypes.arrayOf(PropTypes.object)
+  cols: PropTypes.arrayOf(PropTypes.object),
+  onCellChange: PropTypes.func,
+  onLabelChange: PropTypes.func,
+  onImageChange: PropTypes.func,
+  onInsertRow: PropTypes.func,
+  onInsertCol: PropTypes.func,
+  onRemoveClick: PropTypes.func
 };
 
 QuestionsTable.defaultProps = {
